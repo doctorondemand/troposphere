@@ -3,6 +3,7 @@
 import argparse
 import json
 import pprint
+import collections
 
 
 class object_registry(object):
@@ -19,7 +20,7 @@ class object_registry(object):
         return new_name
 
     def lookup(self, o):
-        if o in self.objects:
+        if isinstance(o, collections.Hashable) and o in self.objects:
             return self.objects[o]
         else:
             return output_value(o)
